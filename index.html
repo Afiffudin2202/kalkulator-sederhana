@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kalkulator UTS NOVA</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .bio {
+            text-align: center;
+        }
+        .calculator {
+            width: 250px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #252525;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            box-shadow: 0px 0px 10px rgba(126, 37, 37, 0.1);
+        }
+        .wrapper-display {
+            width: 100%;
+        }
+        .wrapper-display input[type="text"] {
+            width: 100%;
+            border-radius: 5px;
+            height: 80px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .wrapper-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+        }
+        .calculator button {
+            width: 48px;
+            height: 48px;
+            font-size: 18px;
+           margin: 5px 3px;
+            border-radius: 5px;
+            background-color: #2f3032;
+            color: #fff;
+             border: none ;
+            cursor: pointer;
+        }
+        .calculator .clear {
+            color: red;
+        }
+        .calculator .equal {
+            background-color: green;
+        }
+        .calculator button:hover {
+            background-color: #8e9092;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="bio">
+            <h3>Kalkulator Sederhana</h3>
+        </div>
+        <div class="calculator">
+            <div class="wrapper-display">
+                <input type="text" id="display" readonly>
+            </div>
+            <div class="wrapper-btn">
+                <div class="button">
+                    <button class="clear" onclick="clearDisplay()">C</button>
+                    <button onclick="appendToDisplay('0')">0</button>
+                    <button onclick="appendToDisplay('/')">/</button>
+                    <button onclick="appendToDisplay('*')">*</button>
+                </div>
+                <div class="button">
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+
+                </div>
+                <div class="button">
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('+')">+</button>
+                </div>
+                <div class="button">
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button class="equal" onclick="calculateResult()">=</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Ini Logika nya ya -->
+        <script>
+        // fungsi 1 untuk menampilkan apa yang kita pijit ke layar
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        // fungsi 2 untuk clear ketika kita tekan tombol C
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        // Fungsi 3 ini logika matematikanya
+        function calculateResult() {
+
+            try {
+                // Jika berhasil maka yang ini nih yang di jalankan
+                // 1. eval itu dia mengubah bentuk string (apa yang kamu masukan dan apa yang d terima oleh layar)
+                const result = eval(document.getElementById('display').value);
+                // 2. ini hasilnya, jadi hasil dari eval itu di kembalikan oleh result yang akan mengembalikan ke layar
+                document.getElementById('display').value = result;
+            } catch (error) {
+                // ini ketika error
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+    </body>
+</html>
